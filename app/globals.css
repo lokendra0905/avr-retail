@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #000000;
+  --color-navy-900: #0a0a0a;
+  --color-navy-800: #141414;
+  --color-navy-700: #222222;
+  --color-gold-400: #ffb800;
+  --color-gold-500: #e54e26;
+  --color-gold-600: #b01e23;
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-navy-950 text-white antialiased;
+}
+
+::selection {
+  @apply bg-gold-500/30 text-white;
+}
+
+.bg-brand-glow {
+  background-image: radial-gradient(
+    ellipse at top right,
+    color-mix(in oklab, var(--color-gold-500) 25%, transparent) 0%,
+    transparent 55%
+  );
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
