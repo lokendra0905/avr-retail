@@ -12,12 +12,12 @@ export const HOME = {
     ],
   },
   hero: {
-    headline: "Retail Solutions Provider in India",
+    headline: "Turning Spaces into Retail Success",
     subheadline:
-      "End-to-end retail fit out — from 3D design to manufacturing and installation. Trusted across India for optical showroom design and commercial interior design.",
+      "Simplifying retail store fit-out — from 3D design and manufacturing to on-site installation. India's trusted partner for optical showroom design and turnkey retail interiors.",
     ctaPrimary: { label: "Call Us Now", type: "phone" as const },
     ctaSecondary: { label: "View Our Work", href: "/services" },
-    backgroundVideo: OLD_SITE_IMAGES.hero.video,
+    backgroundVideo: "/assets/video/hero.mp4",
     backgroundPoster: OLD_SITE_IMAGES.hero.banner1,
   },
   intro: {

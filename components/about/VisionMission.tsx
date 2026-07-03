@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ABOUT } from "@/constants/about";
-import { AnimatedSection, SectionHeading } from "@/components/shared/AnimatedSection";
+import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { cn } from "@/lib/utils";
 
 export function VisionMission() {
@@ -21,8 +21,8 @@ export function VisionMission() {
                 className={cn(
                   "rounded-full px-6 py-2 text-sm font-semibold capitalize transition-all",
                   active === tab
-                    ? "bg-gold-500 text-navy-950"
-                    : "bg-navy-800 text-white/60 hover:text-white"
+                    ? "bg-gold-500 text-white"
+                    : "bg-navy-800 text-ink-muted hover:text-ink"
                 )}
               >
                 {ABOUT[tab].title}
@@ -30,7 +30,7 @@ export function VisionMission() {
             ))}
           </div>
           <blockquote className="mx-auto max-w-3xl text-center">
-            <p className="font-display text-2xl font-medium leading-relaxed text-white md:text-3xl">
+            <p className="font-display text-2xl font-medium leading-relaxed text-ink md:text-3xl">
               &ldquo;{ABOUT[active].quote}&rdquo;
             </p>
             <footer className="mt-6 text-gold-400 font-semibold">

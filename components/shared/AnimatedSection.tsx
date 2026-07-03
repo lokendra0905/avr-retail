@@ -48,11 +48,11 @@ export function SectionHeading({
         className
       )}
     >
-      <h2 className="font-display text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+      <h2 className="font-display text-3xl font-bold tracking-tight text-ink md:text-4xl lg:text-5xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 max-w-2xl text-lg text-white/60 mx-auto">{subtitle}</p>
+        <p className="mt-4 max-w-2xl text-lg text-ink-muted mx-auto">{subtitle}</p>
       )}
       <div
         className={cn(

@@ -13,11 +13,11 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    "bg-gold-500 text-navy-950 hover:bg-gold-400 shadow-lg shadow-gold-500/20",
-  secondary: "bg-navy-800 text-white hover:bg-navy-700 border border-navy-700",
+    "bg-gold-500 text-white hover:bg-gold-600 shadow-lg shadow-gold-500/25",
+  secondary: "bg-navy-900 text-ink hover:bg-navy-700 border border-navy-700",
   outline:
-    "border border-gold-500/50 text-gold-400 hover:bg-gold-500/10 hover:border-gold-400",
-  ghost: "text-white/80 hover:text-white hover:bg-white/5",
+    "border border-gold-500 text-gold-500 hover:bg-gold-500/10 hover:border-gold-600",
+  ghost: "text-ink-muted hover:text-ink hover:bg-navy-900",
 };
 
 const sizes = {

@@ -1,5 +1,7 @@
-import { buildMetadata } from "@/lib/seo";
 import { ABOUT } from "@/constants/about";
+import { PAGE_BANNERS } from "@/constants/page-banners";
+import { buildMetadata } from "@/lib/seo";
+import { PageBanner } from "@/components/shared/PageBanner";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { VisionMission } from "@/components/about/VisionMission";
 import { TeamGrid } from "@/components/about/TeamGrid";
@@ -17,23 +19,14 @@ export const metadata = buildMetadata({
 export default function AboutPage() {
   return (
     <>
-      <section className="py-24">
+      <PageBanner title={ABOUT.hero.title} subtitle={ABOUT.hero.subtitle} image={PAGE_BANNERS.about.image} />
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <AnimatedSection>
-            <h1 className="font-display text-4xl font-bold text-white md:text-5xl">
-              {ABOUT.hero.title}
-            </h1>
-            <p className="mt-4 text-xl text-white/60">{ABOUT.hero.subtitle}</p>
-          </AnimatedSection>
-          <AnimatedSection className="mt-16">
-            <h2 className="font-display text-2xl font-bold text-white">
-              {ABOUT.company.title}
-            </h2>
+            <h2 className="font-display text-2xl font-bold text-ink">{ABOUT.company.title}</h2>
             <div className="mt-6 space-y-4 max-w-4xl">
               {ABOUT.company.paragraphs.map((p, i) => (
-                <p key={i} className="text-white/70 leading-relaxed">
-                  {p}
-                </p>
+                <p key={i} className="text-ink-muted leading-relaxed">{p}</p>
               ))}
             </div>
           </AnimatedSection>
@@ -43,7 +36,7 @@ export default function AboutPage() {
       <Achievements />
       <Timeline />
       <TeamGrid />
-      <section className="py-24">
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <CTABlock />
         </div>

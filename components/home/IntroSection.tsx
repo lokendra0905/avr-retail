@@ -21,7 +21,7 @@ export function IntroSection() {
           <div className="grid gap-12 lg:grid-cols-2">
             <div className="space-y-4">
               {intro.paragraphs.map((p, i) => (
-                <p key={i} className="text-white/70 leading-relaxed">
+                <p key={i} className="text-ink-muted leading-relaxed">
                   {p}
                 </p>
               ))}
@@ -36,8 +36,8 @@ export function IntroSection() {
                   <AnimatedSection key={cap.title} delay={i * 0.1}>
                     <div className="rounded-xl border border-navy-700 bg-navy-900/50 p-6 transition-colors hover:border-gold-500/30">
                       <Icon className="h-8 w-8 text-gold-500" />
-                      <h3 className="mt-4 font-semibold text-white">{cap.title}</h3>
-                      <p className="mt-2 text-sm text-white/60">{cap.description}</p>
+                      <h3 className="mt-4 font-semibold text-ink">{cap.title}</h3>
+                      <p className="mt-2 text-sm text-ink-muted">{cap.description}</p>
                     </div>
                   </AnimatedSection>
                 );

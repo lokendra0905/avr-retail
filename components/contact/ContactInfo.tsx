@@ -1,7 +1,6 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { CONTACT } from "@/constants/contact";
 import { SITE } from "@/constants/site";
-import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { Button } from "@/components/ui/Button";
 import { getPhoneUrl, getEmailUrl, getWhatsAppUrl } from "@/lib/utils";
 
@@ -13,8 +12,8 @@ export function ContactInfo() {
           <MapPin className="h-6 w-6 text-gold-500" />
         </div>
         <div>
-          <h3 className="font-semibold text-white">Address</h3>
-          <p className="mt-1 text-white/60">{SITE.contact.address}</p>
+          <h3 className="font-semibold text-ink">Address</h3>
+          <p className="mt-1 text-ink-muted">{SITE.contact.address}</p>
           <a
             href={SITE.contact.mapLink}
             target="_blank"
@@ -31,10 +30,10 @@ export function ContactInfo() {
           <Phone className="h-6 w-6 text-gold-500" />
         </div>
         <div>
-          <h3 className="font-semibold text-white">Phone</h3>
+          <h3 className="font-semibold text-ink">Phone</h3>
           <a
             href={getPhoneUrl(SITE.contact.phone)}
-            className="mt-1 block text-white/60 hover:text-gold-400"
+            className="mt-1 block text-ink-muted hover:text-gold-400"
           >
             {SITE.contact.phoneDisplay}
           </a>
@@ -46,10 +45,10 @@ export function ContactInfo() {
           <Mail className="h-6 w-6 text-gold-500" />
         </div>
         <div>
-          <h3 className="font-semibold text-white">Email</h3>
+          <h3 className="font-semibold text-ink">Email</h3>
           <a
             href={getEmailUrl(SITE.contact.email)}
-            className="mt-1 block text-white/60 hover:text-gold-400"
+            className="mt-1 block text-ink-muted hover:text-gold-400"
           >
             {SITE.contact.email}
           </a>
@@ -61,9 +60,9 @@ export function ContactInfo() {
           <Clock className="h-6 w-6 text-gold-500" />
         </div>
         <div>
-          <h3 className="font-semibold text-white">Office Hours</h3>
+          <h3 className="font-semibold text-ink">Office Hours</h3>
           {CONTACT.officeHours.map((h) => (
-            <p key={h.day} className="mt-1 text-white/60">
+            <p key={h.day} className="mt-1 text-ink-muted">
               {h.day}: {h.hours}
             </p>
           ))}

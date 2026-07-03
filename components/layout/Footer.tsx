@@ -9,42 +9,41 @@ export function Footer() {
   const services = getAllServices();
 
   return (
-    <footer className="border-t border-white/5 bg-navy-900">
+    <footer className="border-t border-navy-700 bg-navy-900">
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo variant="footer" />
-            <p className="mt-3 text-xs italic text-white/50">{SITE.brandTagline}</p>
-            <p className="mt-4 text-sm leading-relaxed text-white/60">
+            <p className="mt-3 text-xs italic text-ink-muted">{SITE.brandTagline}</p>
+            <p className="mt-4 text-sm leading-relaxed text-ink-muted">
               {FOOTER.description}
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Quick Links</h3>
+            <h3 className="font-semibold text-ink">Quick Links</h3>
             <ul className="mt-4 space-y-2">
               {FOOTER.quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-gold-400"
-                  >
+                  <Link href={link.href} className="text-sm text-ink-muted transition-colors hover:text-gold-500">
                     {link.label}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/services" className="text-sm text-ink-muted transition-colors hover:text-gold-500">
+                  What We Do
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Services</h3>
+            <h3 className="font-semibold text-ink">What We Do</h3>
             <ul className="mt-4 space-y-2">
               {services.map((service) => (
                 <li key={service.slug}>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="text-sm text-white/60 transition-colors hover:text-gold-400"
-                  >
+                  <Link href={`/services/${service.slug}`} className="text-sm text-ink-muted transition-colors hover:text-gold-500">
                     {service.title}
                   </Link>
                 </li>
@@ -53,48 +52,29 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Contact</h3>
+            <h3 className="font-semibold text-ink">Contact</h3>
             <ul className="mt-4 space-y-3">
-              <li className="flex items-start gap-2 text-sm text-white/60">
+              <li className="flex items-start gap-2 text-sm text-ink-muted">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
                 {SITE.contact.address}
               </li>
               <li>
-                <a
-                  href={getPhoneUrl(SITE.contact.phone)}
-                  className="flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-gold-400"
-                >
+                <a href={getPhoneUrl(SITE.contact.phone)} className="flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-gold-500">
                   <Phone className="h-4 w-4 text-gold-500" />
                   {SITE.contact.phoneDisplay}
                 </a>
               </li>
               <li>
-                <a
-                  href={getEmailUrl(SITE.contact.email)}
-                  className="flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-gold-400"
-                >
+                <a href={getEmailUrl(SITE.contact.email)} className="flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-gold-500">
                   <Mail className="h-4 w-4 text-gold-500" />
                   {SITE.contact.email}
                 </a>
               </li>
             </ul>
-            <div className="mt-4 flex gap-3">
-              {Object.entries(SITE.social).map(([key, url]) => (
-                <a
-                  key={key}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-navy-800 px-3 py-1 text-xs capitalize text-white/60 transition-colors hover:bg-gold-500/20 hover:text-gold-400"
-                >
-                  {key}
-                </a>
-              ))}
-            </div>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/5 pt-8 text-center text-sm text-white/40">
+        <div className="mt-12 border-t border-navy-700 pt-8 text-center text-sm text-ink-muted/80">
           {FOOTER.copyright}
         </div>
       </div>

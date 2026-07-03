@@ -5,7 +5,7 @@ import { getAllBlogSlugs } from "@/constants/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
-  const staticPages = ["", "/about", "/services", "/blog", "/contact"];
+  const staticPages = ["", "/about", "/services", "/portfolio", "/blog", "/contact"];
 
   const servicePages = getAllServiceSlugs().map((slug) => ({
     url: `${base}/services/${slug}`,

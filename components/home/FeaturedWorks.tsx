@@ -41,16 +41,16 @@ export function FeaturedWorks() {
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-white group-hover:text-gold-400 transition-colors">
+                  <h3 className="font-semibold text-ink group-hover:text-gold-400 transition-colors">
                     {project.title}
                   </h3>
                   {project.location && (
-                    <p className="mt-1 flex items-center gap-1 text-sm text-white/50">
+                    <p className="mt-1 flex items-center gap-1 text-sm text-ink-muted/80">
                       <MapPin className="h-3 w-3" />
                       {project.location}
                     </p>
                   )}
-                  <p className="mt-2 line-clamp-2 text-sm text-white/60">
+                  <p className="mt-2 line-clamp-2 text-sm text-ink-muted">
                     {project.excerpt}
                   </p>
                 </div>

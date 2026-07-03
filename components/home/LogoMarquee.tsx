@@ -8,7 +8,7 @@ export function LogoMarquee() {
   const logos = [...HOME.clientLogos, ...HOME.clientLogos];
 
   return (
-    <section className="overflow-hidden border-y border-white/5 py-16">
+    <section className="overflow-hidden border-y border-navy-700 py-16">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <AnimatedSection>
           <SectionHeading

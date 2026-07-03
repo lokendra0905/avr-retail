@@ -31,12 +31,12 @@ export const OLD_SITE_IMAGES = {
     mobile: oldImage("/AvrRetailImages/CategoryImages/mobile-showroomthe-fan-studio.jpg"),
   },
   team: {
-    ramesh: oldImage("/assets/images/team/Ramesh-Jangir-Founder-and-CEO.png"),
-    sharmila: oldImage("/assets/images/team/Sharmila-Director.png"),
-    yashpal: oldImage("/assets/images/team/Yashpal.png"),
-    satish: oldImage("/assets/images/team/Satish.png"),
-    yogender: oldImage("/assets/images/team/Yogender.png"),
-    yogesh: oldImage("/assets/images/team/succ2.png"),
+    ramesh: "/assets/team/Ramesh-Jangir-Founder-and-CEO.png",
+    sharmila: "/assets/team/Sharmila-Director.png",
+    yashpal: "/assets/team/Yashpal.png",
+    satish: "/assets/team/Satish.png",
+    yogender: "/assets/team/Yogender.png",
+    yogesh: "/assets/team/Yogesh.png",
   },
   clients: [
     { name: "Reddy Opticals", src: oldImage("/assets/images/client/Reddy-Opticals.jpg") },

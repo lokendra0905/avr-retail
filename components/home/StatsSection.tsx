@@ -38,7 +38,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 
 export function StatsSection() {
   return (
-    <section className="border-y border-white/5 bg-navy-900/50 py-24">
+    <section className="border-y border-navy-700 bg-navy-900/50 py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <AnimatedSection>
           <SectionHeading
@@ -56,7 +56,7 @@ export function StatsSection() {
                 <div className="font-display text-4xl font-bold text-gold-400 md:text-5xl">
                   <CountUp value={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="mt-2 text-white/60">{stat.label}</p>
+                <p className="mt-2 text-ink-muted">{stat.label}</p>
               </motion.div>
             </AnimatedSection>
           ))}

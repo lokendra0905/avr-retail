@@ -27,16 +27,16 @@ export function ProjectCard({ project, serviceSlug }: ProjectCardProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent" />
         </div>
         <div className="p-5">
-          <h3 className="font-semibold text-white group-hover:text-gold-400 transition-colors">
+          <h3 className="font-semibold text-ink group-hover:text-gold-400 transition-colors">
             {project.title}
           </h3>
           {project.location && (
-            <p className="mt-1 flex items-center gap-1 text-sm text-white/50">
+            <p className="mt-1 flex items-center gap-1 text-sm text-ink-muted/80">
               <MapPin className="h-3 w-3" />
               {project.location}
             </p>
           )}
-          <p className="mt-2 line-clamp-2 text-sm text-white/60">{project.excerpt}</p>
+          <p className="mt-2 line-clamp-2 text-sm text-ink-muted">{project.excerpt}</p>
           <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-gold-400">
             View Project
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

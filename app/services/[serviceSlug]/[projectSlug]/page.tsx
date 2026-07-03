@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { buildMetadata, buildBreadcrumbJsonLd } from "@/lib/seo";
 import {
@@ -7,6 +6,7 @@ import {
   getProjectBySlug,
   getRelatedProjects,
 } from "@/lib/services";
+import { PageBanner } from "@/components/shared/PageBanner";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { ProjectGallery } from "@/components/services/ProjectGallery";
@@ -48,7 +48,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   const videos = project.gallery.filter((m) => m.type === "video");
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
-    { name: "Services", path: "/services" },
+    { name: "What We Do", path: "/services" },
     { name: service.title, path: `/services/${serviceSlug}` },
     { name: project.title, path: `/services/${serviceSlug}/${projectSlug}` },
   ]);
@@ -63,6 +63,10 @@ export default async function ProjectDetailPage({ params }: Props) {
       .map((m) => m.src),
   };
 
+  const bannerSubtitle = project.location
+    ? `${project.location} — ${service.title}`
+    : service.title;
+
   return (
     <>
       <script
@@ -74,51 +78,43 @@ export default async function ProjectDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(galleryJsonLd) }}
       />
 
-      <section className="relative py-24">
-        <div className="absolute inset-0">
-          <Image
-            src={project.coverImage}
-            alt={project.seo.title}
-            fill
-            className="object-cover opacity-30"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-950/95 to-navy-950" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 md:px-6">
+      <PageBanner
+        title={project.title}
+        subtitle={bannerSubtitle}
+        image={project.coverImage}
+        imageAlt={project.seo.title}
+      />
+
+      <section className="py-12">
+        <div className="mx-auto max-w-7xl px-4 md:px-6">
           <Breadcrumbs
             items={[
-              { name: "Services", path: "/services" },
+              { name: "What We Do", path: "/services" },
               { name: service.title, path: `/services/${serviceSlug}` },
               { name: project.title, path: `/services/${serviceSlug}/${projectSlug}` },
             ]}
-            className="mb-8"
           />
-          <AnimatedSection>
-            <span className="rounded-full bg-gold-500/20 px-3 py-1 text-sm font-medium text-gold-400">
+          <AnimatedSection className="mt-8">
+            <span className="rounded-full bg-gold-500/15 px-3 py-1 text-sm font-medium text-gold-600">
               {service.title}
             </span>
-            <h1 className="mt-4 font-display text-4xl font-bold text-white md:text-5xl">
-              {project.title}
-            </h1>
             {project.location && (
-              <p className="mt-3 flex items-center gap-2 text-white/60">
+              <p className="mt-4 flex items-center gap-2 text-ink-muted">
                 <MapPin className="h-4 w-4 text-gold-500" />
                 {project.location}
               </p>
             )}
-            <p className="mt-6 max-w-3xl text-lg text-white/70 leading-relaxed">
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink-muted">
               {project.description}
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 border-t border-navy-700">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <AnimatedSection>
-            <h2 className="font-display text-2xl font-bold text-white mb-8">
+            <h2 className="font-display text-2xl font-bold text-ink mb-8">
               Project Gallery
             </h2>
           </AnimatedSection>
@@ -128,10 +124,10 @@ export default async function ProjectDetailPage({ params }: Props) {
       </section>
 
       {related.length > 0 && (
-        <section className="py-16 border-t border-white/5">
+        <section className="py-16 border-t border-navy-700">
           <div className="mx-auto max-w-7xl px-4 md:px-6">
             <AnimatedSection>
-              <h2 className="font-display text-2xl font-bold text-white mb-8">
+              <h2 className="font-display text-2xl font-bold text-ink mb-8">
                 More {service.title} Projects
               </h2>
             </AnimatedSection>

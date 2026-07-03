@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-950: #000000;
-  --color-navy-900: #0a0a0a;
-  --color-navy-800: #141414;
-  --color-navy-700: #222222;
+  /* Light surfaces (logo-aligned warm neutrals) */
+  --color-navy-950: #faf8f6;
+  --color-navy-900: #f3eeea;
+  --color-navy-800: #ffffff;
+  --color-navy-700: #e8e0da;
+  /* Brand accents from logo */
   --color-gold-400: #ffb800;
   --color-gold-500: #e54e26;
   --color-gold-600: #b01e23;
+  /* Text */
+  --color-ink: #1a1a1a;
+  --color-ink-muted: #5c534e;
   --font-sans: var(--font-inter);
   --font-display: var(--font-inter);
 }
@@ -17,17 +22,17 @@ html {
 }
 
 body {
-  @apply bg-navy-950 text-white antialiased;
+  @apply bg-navy-950 text-ink antialiased;
 }
 
 ::selection {
-  @apply bg-gold-500/30 text-white;
+  @apply bg-gold-500/25 text-ink;
 }
 
 .bg-brand-glow {
   background-image: radial-gradient(
     ellipse at top right,
-    color-mix(in oklab, var(--color-gold-500) 25%, transparent) 0%,
+    color-mix(in oklab, var(--color-gold-500) 18%, transparent) 0%,
     transparent 55%
   );
 }

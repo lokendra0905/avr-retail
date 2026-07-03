@@ -37,3 +37,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw optical source folders (site uses processed copies in public/assets/projects/)
+public/assets/Opticals/

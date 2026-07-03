@@ -35,10 +35,10 @@ export function ServicesPreview() {
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent" />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-white group-hover:text-gold-400 transition-colors">
+                  <h3 className="font-semibold text-ink group-hover:text-gold-400 transition-colors">
                     {service.title}
                   </h3>
-                  <p className="mt-2 line-clamp-2 text-sm text-white/60">
+                  <p className="mt-2 line-clamp-2 text-sm text-ink-muted">
                     {service.description}
                   </p>
                   <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-gold-400">

@@ -15,7 +15,7 @@ export function Achievements() {
                 <div className="font-display text-4xl font-bold text-gold-400">
                   {item.value}
                 </div>
-                <p className="mt-2 text-white/60">{item.label}</p>
+                <p className="mt-2 text-ink-muted">{item.label}</p>
               </div>
             </AnimatedSection>
           ))}

@@ -10,8 +10,8 @@ export function ProcessSteps() {
             <span className="font-display text-3xl font-bold text-gold-500/30">
               0{i + 1}
             </span>
-            <h3 className="mt-2 font-semibold text-white">{step.title}</h3>
-            <p className="mt-2 text-sm text-white/60">{step.description}</p>
+            <h3 className="mt-2 font-semibold text-ink">{step.title}</h3>
+            <p className="mt-2 text-sm text-ink-muted">{step.description}</p>
           </div>
         </AnimatedSection>
       ))}

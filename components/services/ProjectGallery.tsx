@@ -56,7 +56,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
             <button
               type="button"
               onClick={closeLightbox}
-              className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+              className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-ink hover:bg-white/20"
               aria-label="Close lightbox"
             >
               <X className="h-6 w-6" />
@@ -64,7 +64,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+              className="absolute left-4 rounded-full bg-white/10 p-2 text-ink hover:bg-white/20"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-6 w-6" />
@@ -72,7 +72,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-4 top-16 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 md:right-16 md:top-1/2 md:-translate-y-1/2"
+              className="absolute right-4 top-16 rounded-full bg-white/10 p-2 text-ink hover:bg-white/20 md:right-16 md:top-1/2 md:-translate-y-1/2"
               aria-label="Next image"
             >
               <ChevronRight className="h-6 w-6" />
@@ -89,7 +89,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
                 sizes="100vw"
               />
               {imageItems[lightboxIndex].caption && (
-                <p className="absolute bottom-0 left-0 right-0 bg-navy-950/80 p-4 text-center text-sm text-white/80">
+                <p className="absolute bottom-0 left-0 right-0 bg-navy-950/80 p-4 text-center text-sm text-ink/80">
                   {imageItems[lightboxIndex].caption}
                 </p>
               )}

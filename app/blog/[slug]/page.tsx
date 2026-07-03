@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
           />
 
           <AnimatedSection>
-            <div className="flex items-center gap-2 text-sm text-white/50">
+            <div className="flex items-center gap-2 text-sm text-ink-muted/80">
               <Calendar className="h-4 w-4" />
               {new Date(post.date).toLocaleDateString("en-IN", {
                 year: "numeric",
@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: Props) {
               <span className="mx-2">·</span>
               {post.author}
             </div>
-            <h1 className="mt-4 font-display text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="mt-4 font-display text-3xl font-bold text-ink md:text-4xl lg:text-5xl">
               {post.title}
             </h1>
           </AnimatedSection>
@@ -99,19 +99,35 @@ export default async function BlogPostPage({ params }: Props) {
           </AnimatedSection>
 
           <AnimatedSection className="mt-12">
-            <div className="prose prose-invert max-w-none">
-              {post.content.map((paragraph, i) => (
-                <p key={i} className="mb-6 text-lg text-white/70 leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
+            <div className="max-w-none">
+              {post.content.map((block, i) => {
+                if (block.startsWith("## ")) {
+                  return (
+                    <h2 key={i} className="mb-4 mt-10 font-display text-2xl font-bold text-ink">
+                      {block.slice(3)}
+                    </h2>
+                  );
+                }
+                if (block.startsWith("### ")) {
+                  return (
+                    <h3 key={i} className="mb-3 mt-8 text-xl font-semibold text-ink">
+                      {block.slice(4)}
+                    </h3>
+                  );
+                }
+                return (
+                  <p key={i} className="mb-6 text-lg leading-relaxed text-ink-muted">
+                    {block}
+                  </p>
+                );
+              })}
             </div>
           </AnimatedSection>
 
           <div className="mt-12">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-gold-400 hover:text-gold-300 transition-colors"
+              className="inline-flex items-center gap-2 text-gold-500 transition-colors hover:text-gold-600"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Blog
