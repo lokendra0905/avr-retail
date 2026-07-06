@@ -213,18 +213,4 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       keywords: ["showroom design services", "shop interior design India"],
     },
   },
-  {
-    slug: "medical-store-design",
-    title: "Medical Store Design",
-    description: "Compliant medical store design with organised shelving, clear signage, and hygienic finishes.",
-    coverImage: OLD_SITE_IMAGES.services.retailInterior,
-    projects: [
-      simpleProject("health-plus-pharmacy", "Health Plus Pharmacy", "Medical Store Design", "Gurugram", OLD_SITE_IMAGES.services.retailInterior),
-    ],
-    seo: {
-      title: "Medical Store Design & Shop Interior Design India",
-      description: "Medical store design and commercial interior design by AVR Retail across India.",
-      keywords: ["shop interior design India", "commercial interior design India"],
-    },
-  },
 ];

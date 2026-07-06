@@ -15,7 +15,7 @@ export const SITE = {
     address:
       "Shed No. 2, Garhi Rd, near Hanuman Mandir, Basai Village, Sector 9B, Gurugram, Haryana 122001",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.223391462141!2d77.0266!3d28.4595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI3JzM0LjIiTiA3N8KwMDEnMzUuOCJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20754.11762913612!2d76.95650483358921!3d28.45210074489262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3d6a24c93647%3A0x6383040477f1ebd1!2sAVR%20Retail%20Solutions%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1783333417819!5m2!1sen!2sin",
     mapLink: "https://maps.google.com/?q=AVR+Retail+Solutions+Gurugram",
   },
   social: {

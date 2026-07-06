@@ -38,25 +38,30 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 
 export function StatsSection() {
   return (
-    <section className="border-y border-navy-700 bg-navy-900/50 py-24">
+    <section className="section-alt border-y border-navy-700 py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <AnimatedSection>
           <SectionHeading
             title={HOME.sections.stats.title}
             subtitle={HOME.sections.stats.subtitle}
+            eyebrow="By The Numbers"
           />
         </AnimatedSection>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {HOME.stats.map((stat, i) => (
-            <AnimatedSection key={stat.label} delay={i * 0.1}>
+            <AnimatedSection key={stat.label} delay={i * 0.1} direction="scale">
               <motion.div
-                className="text-center"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="glass-card group p-8 text-center"
               >
-                <div className="font-display text-4xl font-bold text-gold-400 md:text-5xl">
+                <div className="font-display text-4xl font-bold text-gradient-brand md:text-5xl">
                   <CountUp value={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="mt-2 text-ink-muted">{stat.label}</p>
+                <p className="mt-3 font-accent text-sm font-medium uppercase tracking-widest text-ink-muted">
+                  {stat.label}
+                </p>
+                <div className="mx-auto mt-4 h-0.5 w-8 rounded-full bg-gold-500/30 transition-all duration-300 group-hover:w-16 group-hover:bg-gold-500" />
               </motion.div>
             </AnimatedSection>
           ))}

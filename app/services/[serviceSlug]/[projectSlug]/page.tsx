@@ -7,8 +7,9 @@ import {
   getRelatedProjects,
 } from "@/lib/services";
 import { PageBanner } from "@/components/shared/PageBanner";
-import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
+import { PageIntro } from "@/components/shared/PageIntro";
+import { PageSection } from "@/components/shared/PageSection";
+import { AnimatedSection, SectionHeading } from "@/components/shared/AnimatedSection";
 import { ProjectGallery } from "@/components/services/ProjectGallery";
 import { VideoSection } from "@/components/services/VideoSection";
 import { ProjectCard } from "@/components/services/ProjectCard";
@@ -58,9 +59,7 @@ export default async function ProjectDetailPage({ params }: Props) {
     "@type": "ImageGallery",
     name: project.title,
     description: project.description,
-    image: project.gallery
-      .filter((m) => m.type === "image")
-      .map((m) => m.src),
+    image: project.gallery.filter((m) => m.type === "image").map((m) => m.src),
   };
 
   const bannerSubtitle = project.location
@@ -69,85 +68,64 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(galleryJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(galleryJsonLd) }} />
 
-      <PageBanner
-        title={project.title}
-        subtitle={bannerSubtitle}
-        image={project.coverImage}
-        imageAlt={project.seo.title}
-      />
-
-      <section className="py-12">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <Breadcrumbs
-            items={[
-              { name: "What We Do", path: "/services" },
-              { name: service.title, path: `/services/${serviceSlug}` },
-              { name: project.title, path: `/services/${serviceSlug}/${projectSlug}` },
-            ]}
-          />
-          <AnimatedSection className="mt-8">
-            <span className="rounded-full bg-gold-500/15 px-3 py-1 text-sm font-medium text-gold-600">
+      <PageBanner title={project.title} subtitle={bannerSubtitle} image={project.coverImage} imageAlt={project.seo.title} />
+      <PageIntro
+        items={[
+          { name: "What We Do", path: "/services" },
+          { name: service.title, path: `/services/${serviceSlug}` },
+          { name: project.title, path: `/services/${serviceSlug}/${projectSlug}` },
+        ]}
+      >
+        <AnimatedSection>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-1.5 font-game text-xs uppercase tracking-wider text-gold-500">
               {service.title}
             </span>
             {project.location && (
-              <p className="mt-4 flex items-center gap-2 text-ink-muted">
+              <span className="flex items-center gap-1.5 text-ink-muted">
                 <MapPin className="h-4 w-4 text-gold-500" />
                 {project.location}
-              </p>
+              </span>
             )}
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink-muted">
-              {project.description}
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
+          </div>
+          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink-muted">{project.description}</p>
+        </AnimatedSection>
+      </PageIntro>
 
-      <section className="py-16 border-t border-navy-700">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <AnimatedSection>
-            <h2 className="font-display text-2xl font-bold text-ink mb-8">
-              Project Gallery
-            </h2>
-          </AnimatedSection>
-          <ProjectGallery images={project.gallery} projectTitle={project.title} />
-          <VideoSection videos={videos} />
-        </div>
-      </section>
+      <PageSection>
+        <AnimatedSection>
+          <SectionHeading title="Project Gallery" eyebrow="Photos" align="left" />
+        </AnimatedSection>
+        <ProjectGallery images={project.gallery} projectTitle={project.title} />
+        <VideoSection videos={videos} />
+      </PageSection>
 
       {related.length > 0 && (
-        <section className="py-16 border-t border-navy-700">
-          <div className="mx-auto max-w-7xl px-4 md:px-6">
-            <AnimatedSection>
-              <h2 className="font-display text-2xl font-bold text-ink mb-8">
-                More {service.title} Projects
-              </h2>
-            </AnimatedSection>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((p) => (
-                <ProjectCard key={p.slug} project={p} serviceSlug={serviceSlug} />
-              ))}
-            </div>
+        <PageSection variant="alt">
+          <AnimatedSection>
+            <SectionHeading
+              title={`More ${service.title} Projects`}
+              eyebrow="Related Work"
+              align="left"
+            />
+          </AnimatedSection>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((p) => (
+              <ProjectCard key={p.slug} project={p} serviceSlug={serviceSlug} />
+            ))}
           </div>
-        </section>
+        </PageSection>
       )}
 
-      <section className="pb-24">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <CTABlock
-            title="Start Your Project"
-            subtitle={`Inspired by ${project.title}? Let's create something exceptional for your store.`}
-          />
-        </div>
-      </section>
+      <PageSection>
+        <CTABlock
+          title="Start Your Project"
+          subtitle={`Inspired by ${project.title}? Let's create something exceptional for your store.`}
+        />
+      </PageSection>
     </>
   );
 }

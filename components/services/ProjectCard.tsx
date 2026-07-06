@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { MapPin, ArrowRight } from "lucide-react";
 import type { Project } from "@/constants/services";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
@@ -12,37 +15,39 @@ type ProjectCardProps = {
 export function ProjectCard({ project, serviceSlug }: ProjectCardProps) {
   return (
     <AnimatedSection>
-      <Link
-        href={`/services/${serviceSlug}/${project.slug}`}
-        className="group block overflow-hidden rounded-xl border border-navy-700 bg-navy-900/50 transition-all hover:border-gold-500/30"
-      >
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <Image
-            src={project.coverImage}
-            alt={project.seo.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent" />
-        </div>
-        <div className="p-5">
-          <h3 className="font-semibold text-ink group-hover:text-gold-400 transition-colors">
-            {project.title}
-          </h3>
-          {project.location && (
-            <p className="mt-1 flex items-center gap-1 text-sm text-ink-muted/80">
-              <MapPin className="h-3 w-3" />
-              {project.location}
-            </p>
-          )}
-          <p className="mt-2 line-clamp-2 text-sm text-ink-muted">{project.excerpt}</p>
-          <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-gold-400">
-            View Project
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </span>
-        </div>
-      </Link>
+      <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 280 }}>
+        <Link
+          href={`/services/${serviceSlug}/${project.slug}`}
+          className="group block overflow-hidden rounded-2xl border border-navy-700/80 bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/10"
+        >
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <Image
+              src={project.coverImage}
+              alt={project.seo.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="img-card-overlay absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          </div>
+          <div className="p-5">
+            <h3 className="font-display text-lg font-semibold text-ink transition-colors group-hover:text-gold-500">
+              {project.title}
+            </h3>
+            {project.location && (
+              <p className="mt-1.5 flex items-center gap-1 text-sm text-ink-muted">
+                <MapPin className="h-3.5 w-3.5 text-gold-500" />
+                {project.location}
+              </p>
+            )}
+            <p className="mt-2 line-clamp-2 text-sm text-ink-muted">{project.excerpt}</p>
+            <span className="mt-4 inline-flex items-center gap-1.5 font-accent text-sm font-semibold text-gold-500">
+              View Project
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
+            </span>
+          </div>
+        </Link>
+      </motion.div>
     </AnimatedSection>
   );
 }

@@ -1,20 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Light surfaces (logo-aligned warm neutrals) */
+  /* Surfaces */
   --color-navy-950: #faf8f6;
   --color-navy-900: #f3eeea;
   --color-navy-800: #ffffff;
   --color-navy-700: #e8e0da;
-  /* Brand accents from logo */
+  /* Brand */
   --color-gold-400: #ffb800;
   --color-gold-500: #e54e26;
   --color-gold-600: #b01e23;
   /* Text */
-  --color-ink: #1a1a1a;
+  --color-ink: #141414;
   --color-ink-muted: #5c534e;
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-inter);
+  /* Typography */
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-syne);
+  --font-accent: var(--font-outfit);
+  --font-game: var(--font-orbitron);
+  --font-game-alt: var(--font-rajdhani);
 }
 
 html {
@@ -23,10 +27,61 @@ html {
 
 body {
   @apply bg-navy-950 text-ink antialiased;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in oklab, var(--color-gold-500) 8%, transparent), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, color-mix(in oklab, var(--color-gold-400) 6%, transparent), transparent);
 }
 
 ::selection {
   @apply bg-gold-500/25 text-ink;
+}
+
+/* ── Typography utilities ── */
+.font-display {
+  font-family: var(--font-syne), system-ui, sans-serif;
+}
+
+.font-accent {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+.font-game {
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+}
+
+.font-game-alt {
+  font-family: var(--font-rajdhani), system-ui, sans-serif;
+}
+
+.home-experience {
+  margin-top: -72px;
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-400) 50%, var(--color-gold-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  @apply font-accent text-xs font-semibold uppercase tracking-[0.22em] text-gold-500;
+}
+
+/* ── Surfaces ── */
+.glass {
+  @apply border border-white/60 bg-white/70 backdrop-blur-xl;
+}
+
+.glass-card {
+  @apply rounded-2xl border border-navy-700/80 bg-white/80 shadow-sm backdrop-blur-sm transition-all duration-500;
+}
+
+.glass-card:hover {
+  @apply -translate-y-1 border-gold-500/25 shadow-xl;
+  box-shadow:
+    0 20px 40px -12px color-mix(in oklab, var(--color-gold-500) 12%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--color-gold-500) 8%, transparent);
 }
 
 .bg-brand-glow {
@@ -37,16 +92,119 @@ body {
   );
 }
 
+.mesh-cta {
+  background:
+    radial-gradient(at 0% 0%, color-mix(in oklab, var(--color-gold-500) 14%, transparent) 0%, transparent 50%),
+    radial-gradient(at 100% 100%, color-mix(in oklab, var(--color-gold-400) 12%, transparent) 0%, transparent 50%),
+    linear-gradient(135deg, #ffffff 0%, #faf8f6 100%);
+}
+
+.section-alt {
+  @apply bg-navy-900/60;
+  background-image: radial-gradient(ellipse 70% 50% at 50% 100%, color-mix(in oklab, var(--color-gold-500) 5%, transparent), transparent);
+}
+
+/* ── Buttons ── */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(100%);
+}
+
+/* ── Animations ── */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 35s linear infinite;
   width: max-content;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-16px) scale(1.03); }
+}
+
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(12px) scale(0.97); }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 9s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+.animate-scroll-hint {
+  animation: scroll-hint 2s ease-in-out infinite;
+}
+
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.animate-line-grow {
+  transform-origin: left;
+  animation: line-grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Nav link underline ── */
+.nav-link {
+  @apply relative font-accent text-sm font-medium text-ink-muted transition-colors duration-300 hover:text-gold-500;
+}
+
+.nav-link::after {
+  content: "";
+  @apply absolute -bottom-1 left-0 h-0.5 w-0 rounded-full bg-gold-500 transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* ── Image card overlay ── */
+.img-card-overlay {
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--color-ink) 75%, transparent) 0%,
+    color-mix(in oklab, var(--color-ink) 20%, transparent) 40%,
+    transparent 100%
+  );
 }

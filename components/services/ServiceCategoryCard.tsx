@@ -1,37 +1,45 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { ServiceCategory } from "@/constants/services";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 
 export function ServiceCategoryCard({ service }: { service: ServiceCategory }) {
   return (
-    <AnimatedSection>
-      <Link
-        href={`/services/${service.slug}`}
-        className="group block overflow-hidden rounded-xl border border-navy-700 bg-navy-900/50 transition-all hover:border-gold-500/30"
-      >
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <Image
-            src={service.coverImage}
-            alt={`${service.title} — AVR Retail showroom design services`}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent" />
-        </div>
-        <div className="p-6">
-          <h2 className="text-xl font-semibold text-ink group-hover:text-gold-400 transition-colors">
-            {service.title}
-          </h2>
-          <p className="mt-2 line-clamp-3 text-sm text-ink-muted">{service.description}</p>
-          <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-gold-400">
-            {service.projects.length} Project{service.projects.length !== 1 ? "s" : ""}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </span>
-        </div>
-      </Link>
+    <AnimatedSection direction="scale">
+      <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 280 }}>
+        <Link
+          href={`/services/${service.slug}`}
+          className="group block overflow-hidden rounded-2xl border border-navy-700/80 bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/10"
+        >
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <Image
+              src={service.coverImage}
+              alt={`${service.title} — AVR Retail showroom design services`}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="img-card-overlay absolute inset-0" />
+            <div className="absolute bottom-4 left-4 right-4">
+              <span className="font-game text-[10px] uppercase tracking-[0.2em] text-gold-400">
+                {service.projects.length} project{service.projects.length !== 1 ? "s" : ""}
+              </span>
+              <h2 className="mt-1 font-display text-lg font-bold text-white">{service.title}</h2>
+            </div>
+          </div>
+          <div className="p-6">
+            <p className="line-clamp-2 text-sm leading-relaxed text-ink-muted">{service.description}</p>
+            <span className="mt-4 inline-flex items-center gap-1.5 font-game-alt text-xs font-semibold uppercase tracking-wider text-gold-500">
+              Explore
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </span>
+          </div>
+        </Link>
+      </motion.div>
     </AnimatedSection>
   );
 }

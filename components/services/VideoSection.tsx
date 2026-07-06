@@ -1,5 +1,5 @@
 import type { ProjectMedia } from "@/constants/services";
-import { AnimatedSection } from "@/components/shared/AnimatedSection";
+import { AnimatedSection, SectionHeading } from "@/components/shared/AnimatedSection";
 
 type VideoSectionProps = {
   videos: ProjectMedia[];
@@ -15,12 +15,12 @@ export function VideoSection({ videos }: VideoSectionProps) {
   return (
     <section className="mt-16">
       <AnimatedSection>
-        <h2 className="font-display text-2xl font-bold text-ink mb-8">Project Videos</h2>
+        <SectionHeading title="Project Videos" eyebrow="Videos" align="left" />
       </AnimatedSection>
       <div className="grid gap-6 md:grid-cols-2">
         {videos.map((video, i) => (
           <AnimatedSection key={i} delay={i * 0.1}>
-            <div className="overflow-hidden rounded-xl border border-navy-700 bg-navy-800 shadow-sm">
+            <div className="overflow-hidden rounded-2xl border border-navy-700/80 bg-white shadow-lg">
               {isLocalVideo(video.src) ? (
                 <video
                   src={video.src}
@@ -42,7 +42,7 @@ export function VideoSection({ videos }: VideoSectionProps) {
                 </div>
               )}
               {video.caption && (
-                <p className="p-4 text-sm text-ink-muted">{video.caption}</p>
+                <p className="border-t border-navy-700/60 p-4 text-sm text-ink-muted">{video.caption}</p>
               )}
             </div>
           </AnimatedSection>

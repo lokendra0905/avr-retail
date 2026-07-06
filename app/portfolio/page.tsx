@@ -1,6 +1,7 @@
 import { buildMetadata } from "@/lib/seo";
 import { PAGE_BANNERS } from "@/constants/page-banners";
 import { PageBanner } from "@/components/shared/PageBanner";
+import { PageSection } from "@/components/shared/PageSection";
 import { getAllProjectPaths, getProjectBySlug } from "@/lib/services";
 import { ProjectCard } from "@/components/services/ProjectCard";
 import { AnimatedSection, SectionHeading } from "@/components/shared/AnimatedSection";
@@ -26,26 +27,23 @@ export default function PortfolioPage() {
         image={PAGE_BANNERS.portfolio.image}
         imageAlt={PAGE_BANNERS.portfolio.alt}
       />
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <AnimatedSection>
-            <SectionHeading
-              title="Recent Projects"
-              subtitle="The works are the most tangible measure of our success."
-            />
-          </AnimatedSection>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map(({ service, project }) => (
-              <ProjectCard key={`${service.slug}-${project.slug}`} project={project} serviceSlug={service.slug} />
-            ))}
-          </div>
+      <PageSection>
+        <AnimatedSection>
+          <SectionHeading
+            title="Recent Projects"
+            subtitle="The works are the most tangible measure of our success."
+            eyebrow={`${projects.length} Projects`}
+          />
+        </AnimatedSection>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map(({ service, project }) => (
+            <ProjectCard key={`${service.slug}-${project.slug}`} project={project} serviceSlug={service.slug} />
+          ))}
         </div>
-      </section>
-      <section className="pb-20">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <CTABlock />
-        </div>
-      </section>
+      </PageSection>
+      <PageSection variant="dark">
+        <CTABlock />
+      </PageSection>
     </>
   );
 }
