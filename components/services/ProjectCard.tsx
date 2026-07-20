@@ -10,9 +10,10 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection";
 type ProjectCardProps = {
   project: Project;
   serviceSlug: string;
+  serviceTitle?: string;
 };
 
-export function ProjectCard({ project, serviceSlug }: ProjectCardProps) {
+export function ProjectCard({ project, serviceSlug, serviceTitle }: ProjectCardProps) {
   return (
     <AnimatedSection>
       <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 280 }}>
@@ -29,6 +30,11 @@ export function ProjectCard({ project, serviceSlug }: ProjectCardProps) {
               sizes="(max-width: 768px) 100vw, 33vw"
             />
             <div className="img-card-overlay absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            {serviceTitle && (
+              <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-black/50 px-3 py-1 font-game text-[9px] uppercase tracking-wider text-white backdrop-blur-sm">
+                {serviceTitle}
+              </span>
+            )}
           </div>
           <div className="p-5">
             <h3 className="font-display text-lg font-semibold text-ink transition-colors group-hover:text-gold-500">

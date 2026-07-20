@@ -8,10 +8,10 @@ export const SITE = {
   url: "https://www.avrretail.com",
   logo: "/images/logo.png",
   contact: {
-    phone: "+919821169606",
-    phoneDisplay: "+91 982-116-9606",
+    phone: "+919560960838",
+    phoneDisplay: "+91 956-096-0838",
     email: "hello@avrretail.com",
-    whatsapp: "919821169606",
+    whatsapp: "919560960838",
     address:
       "Shed No. 2, Garhi Rd, near Hanuman Mandir, Basai Village, Sector 9B, Gurugram, Haryana 122001",
     mapEmbedUrl:

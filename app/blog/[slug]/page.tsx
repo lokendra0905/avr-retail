@@ -11,6 +11,7 @@ import { PageBanner } from "@/components/shared/PageBanner";
 import { PageIntro } from "@/components/shared/PageIntro";
 import { PageSection } from "@/components/shared/PageSection";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
+import { BlogRichText } from "@/components/blog/BlogRichText";
 import { CTABlock } from "@/components/shared/CTABlock";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -77,25 +78,46 @@ export default async function BlogPostPage({ params }: Props) {
               if (block.startsWith("## ")) {
                 return (
                   <h2 key={i} className="mb-4 mt-12 font-game text-xl font-bold uppercase tracking-wide text-ink md:text-2xl">
-                    {block.slice(3)}
+                    <BlogRichText text={block.slice(3)} />
                   </h2>
                 );
               }
               if (block.startsWith("### ")) {
                 return (
                   <h3 key={i} className="mb-3 mt-8 font-display text-lg font-semibold text-ink">
-                    {block.slice(4)}
+                    <BlogRichText text={block.slice(4)} />
                   </h3>
                 );
               }
               return (
                 <p key={i} className="mb-6 text-lg leading-relaxed text-ink-muted">
-                  {block}
+                  <BlogRichText text={block} />
                 </p>
               );
             })}
           </article>
         </AnimatedSection>
+
+        <div className="mt-10 rounded-2xl border border-gold-500/20 bg-gold-500/5 p-6">
+          <p className="font-game text-xs uppercase tracking-[0.25em] text-gold-500">Explore Our Services</p>
+          <p className="mt-2 text-ink-muted">
+            Looking for{" "}
+            <Link href="/services/optical-store-design" className="font-semibold text-gold-500 hover:underline">
+              optical store design
+            </Link>
+            ,{" "}
+            <Link href="/services" className="font-semibold text-gold-500 hover:underline">
+              showroom design services
+            </Link>
+            , or a full retail fit-out? Browse all categories.
+          </p>
+          <Link
+            href="/services"
+            className="mt-4 inline-flex font-game text-xs font-semibold uppercase tracking-wider text-gold-500 hover:text-gold-600"
+          >
+            View All Services →
+          </Link>
+        </div>
 
         <Link
           href="/blog"

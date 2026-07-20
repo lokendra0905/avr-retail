@@ -10,7 +10,7 @@ import { PageIntro } from "@/components/shared/PageIntro";
 import { PageSection } from "@/components/shared/PageSection";
 import { AnimatedSection, SectionHeading } from "@/components/shared/AnimatedSection";
 import { ProjectCard } from "@/components/services/ProjectCard";
-import { ProcessSteps } from "@/components/services/ProcessSteps";
+import { ProjectGallery } from "@/components/services/ProjectGallery";
 import { CTABlock } from "@/components/shared/CTABlock";
 
 type Props = { params: Promise<{ serviceSlug: string }> };
@@ -37,6 +37,9 @@ export default async function ServiceCategoryPage({ params }: Props) {
   const service = getServiceBySlug(serviceSlug);
   if (!service) notFound();
 
+  const hasProjects = service.projects.length > 0;
+  const hasGallery = service.gallery.length > 0;
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "What We Do", path: "/services" },
     { name: service.title, path: `/services/${serviceSlug}` },
@@ -54,31 +57,22 @@ export default async function ServiceCategoryPage({ params }: Props) {
           { name: service.title, path: `/services/${serviceSlug}` },
         ]}
       />
-      <PageSection variant="dark">
-        <AnimatedSection>
-          <SectionHeading
-            title="Our Process"
-            subtitle="From concept to installation"
-            eyebrow="How We Work"
-            inverted
-          />
-        </AnimatedSection>
-        <ProcessSteps />
-      </PageSection>
-      <PageSection>
-        <AnimatedSection>
-          <SectionHeading
-            title="Completed Projects"
-            subtitle={`${service.projects.length} project${service.projects.length !== 1 ? "s" : ""} in ${service.title.toLowerCase()}`}
-            eyebrow="Portfolio"
-          />
-        </AnimatedSection>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {service.projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} serviceSlug={serviceSlug} />
-          ))}
-        </div>
-      </PageSection>
+      
+
+      {hasProjects ? (
+        <PageSection>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {service.projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} serviceSlug={serviceSlug} />
+            ))}
+          </div>
+        </PageSection>
+      ) : hasGallery ? (
+        <PageSection>
+          <ProjectGallery images={service.gallery} projectTitle={service.title} />
+        </PageSection>
+      ) : null}
+
       <PageSection variant="alt">
         <CTABlock title={`Start Your ${service.title} Project`} />
       </PageSection>

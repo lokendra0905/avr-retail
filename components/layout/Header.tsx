@@ -74,13 +74,17 @@ export function Header() {
             </Link>
           ))}
 
-          <div className="relative ml-2" ref={dropdownRef}>
-            <button
-              type="button"
-              onClick={() => setServicesOpen(!servicesOpen)}
+          <div
+            className="relative ml-2"
+            ref={dropdownRef}
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <Link
+              href="/services"
               className={cn(
                 "nav-link flex items-center gap-1 rounded-lg px-3 py-2",
-                servicesOpen && "text-gold-500",
+                (servicesOpen || pathname.startsWith("/services")) && "text-gold-500",
                 darkHero && "text-white/70 hover:text-gold-400"
               )}
             >
@@ -88,7 +92,7 @@ export function Header() {
               <ChevronDown
                 className={cn("h-4 w-4 transition-transform duration-300", servicesOpen && "rotate-180")}
               />
-            </button>
+            </Link>
             <AnimatePresence>
               {servicesOpen && (
                 <motion.div
@@ -96,7 +100,7 @@ export function Header() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.96 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute right-0 top-full mt-3 w-72 overflow-hidden rounded-2xl border border-navy-700/80 bg-white/95 py-2 shadow-2xl shadow-black/10 backdrop-blur-xl"
+                  className="absolute right-0 top-full mt-0 w-72 overflow-hidden rounded-2xl border border-navy-700/80 bg-white/95 py-2 pt-3 shadow-2xl shadow-black/10 backdrop-blur-xl"
                 >
                   <Link
                     href="/services"
@@ -172,14 +176,23 @@ export function Header() {
                   </Link>
                 </motion.div>
               ))}
-              <button
-                type="button"
-                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className="flex w-full items-center justify-between rounded-xl px-4 py-3 font-accent text-ink-muted hover:bg-navy-900/50"
-              >
-                What We Do
-                <ChevronDown className={cn("h-4 w-4 transition-transform", mobileServicesOpen && "rotate-180")} />
-              </button>
+              <div className="flex items-center gap-1">
+                <Link
+                  href="/services"
+                  onClick={() => setOpen(false)}
+                  className="flex-1 rounded-xl px-4 py-3 font-accent text-ink-muted transition-colors hover:bg-navy-900/50 hover:text-ink"
+                >
+                  What We Do
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="rounded-xl px-3 py-3 text-ink-muted hover:bg-navy-900/50"
+                  aria-label="Toggle services menu"
+                >
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", mobileServicesOpen && "rotate-180")} />
+                </button>
+              </div>
               <AnimatePresence>
                 {mobileServicesOpen && (
                   <motion.div

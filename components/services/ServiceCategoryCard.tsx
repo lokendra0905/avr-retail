@@ -26,7 +26,9 @@ export function ServiceCategoryCard({ service }: { service: ServiceCategory }) {
             <div className="img-card-overlay absolute inset-0" />
             <div className="absolute bottom-4 left-4 right-4">
               <span className="font-game text-[10px] uppercase tracking-[0.2em] text-gold-400">
-                {service.projects.length} project{service.projects.length !== 1 ? "s" : ""}
+                {service.projects.length > 0
+                  ? `${service.projects.length} project${service.projects.length !== 1 ? "s" : ""}`
+                  : `${service.gallery.length} photos`}
               </span>
               <h2 className="mt-1 font-display text-lg font-bold text-white">{service.title}</h2>
             </div>

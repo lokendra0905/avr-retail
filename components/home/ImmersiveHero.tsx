@@ -9,10 +9,17 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { ArrowRight, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, Phone, Factory, Users, FolderCheck, Calendar } from "lucide-react";
 import { HERO_SHOWCASE } from "@/constants/home-showcase";
 import { SITE } from "@/constants/site";
 import { getPhoneUrl } from "@/lib/utils";
+
+const CREDIBILITY = [
+  { icon: FolderCheck, value: "2000+", label: "Projects Delivered" },
+  { icon: Users, value: "100+", label: "Skilled Manpower" },
+  { icon: Factory, value: "50K+", label: "Sqft Manufacturing" },
+  { icon: Calendar, value: "12+", label: "Years Experience" },
+] as const;
 
 export function ImmersiveHero() {
   const [active, setActive] = useState(0);
@@ -34,7 +41,6 @@ export function ImmersiveHero() {
       className="relative min-h-screen overflow-hidden bg-[#080808] pt-[72px]"
       onMouseMove={handleMouse}
     >
-      {/* Grid + noise texture */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         style={{
@@ -46,120 +52,120 @@ export function ImmersiveHero() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-gold-500/10 via-transparent to-transparent" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#080808] to-transparent" />
 
-      <div className="relative mx-auto flex min-h-[calc(100vh-72px)] max-w-[1400px] flex-col lg:flex-row">
-        {/* Left — typography */}
-        <div className="flex flex-1 flex-col justify-center px-6 py-16 lg:px-10 lg:py-24">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="font-game inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-gold-400">
-              <Sparkles className="h-3.5 w-3.5" />
-              Interior · Retail · Fit-Out
-            </span>
-
-            <h1 className="mt-8 font-game text-[clamp(2.8rem,7vw,5.5rem)] font-bold uppercase leading-[0.92] tracking-tight text-white">
-              <span className="block">Craft</span>
-              <span className="block text-gradient-brand">Spaces</span>
-              <span className="block text-white/90">That Sell</span>
-            </h1>
-
-            <p className="mt-8 max-w-md font-sans text-base leading-relaxed text-white/55 md:text-lg">
-              We design, fabricate &amp; install premium retail interiors across India —
-              from optical boutiques to luxury showrooms.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href="/portfolio"
-                className="btn-shine group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 px-8 py-4 font-game text-sm font-semibold uppercase tracking-wider text-white shadow-lg shadow-gold-500/30 transition-transform hover:-translate-y-0.5"
-              >
-                Explore Work
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <a
-                href={getPhoneUrl(SITE.contact.phone)}
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 font-game text-sm font-semibold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-gold-500/50 hover:bg-white/10"
-              >
-                <Phone className="h-4 w-4 text-gold-400" />
-                Call Now
-              </a>
-            </div>
-
-            {/* Interactive hint */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="mt-12 font-game-alt text-xs uppercase tracking-[0.25em] text-white/30"
+      <div className="relative mx-auto flex min-h-[calc(100vh-72px)] max-w-[1400px] flex-col">
+        <div className="flex flex-1 flex-col lg:flex-row">
+          {/* Left — typography */}
+          <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-10 lg:py-16">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              ← Hover cards to explore projects
-            </motion.p>
-          </motion.div>
-        </div>
+              <span className="font-game inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-gold-400">
+                Why AVR · Retail Fit-Out Leaders
+              </span>
 
-        {/* Right — interactive image stack */}
-        <div className="relative flex-1 min-h-[420px] lg:min-h-0">
-          <motion.div style={{ x: parallaxX, y: parallaxY }} className="absolute inset-0 p-6 lg:p-10">
-            {HERO_SHOWCASE.map((item, i) => {
-              const isActive = active === i;
-              return (
-                <motion.button
-                  key={item.title}
-                  type="button"
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{
-                    opacity: 1,
-                    scale: isActive ? 1.05 : 0.92,
-                    rotate: isActive ? 0 : item.rotate,
-                    zIndex: isActive ? 20 : item.z,
-                  }}
-                  transition={{ type: "spring", stiffness: 260, damping: 22 }}
-                  className="absolute w-[52%] max-w-[280px] cursor-pointer overflow-hidden rounded-2xl border border-white/15 shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 md:w-[46%] lg:max-w-[320px]"
-                  style={{ left: item.x, top: item.y }}
+              <h1 className="mt-6 font-game text-[clamp(1.85rem,4.5vw,3.4rem)] font-bold uppercase leading-[1.05] tracking-tight text-white">
+                Premium Retail{" "}
+                <span className="text-gradient-brand">Fit-Out Solutions</span>
+                <span className="block text-white/90">Across India</span>
+              </h1>
+
+              <p className="mt-6 max-w-lg font-sans text-base leading-relaxed text-white/60 md:text-lg">
+                Transforming retail environments with innovative design, precision
+                manufacturing, and seamless installation for brands that want to stand out.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/portfolio"
+                  className="btn-shine group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 px-8 py-4 font-game text-sm font-semibold uppercase tracking-wider text-white shadow-lg shadow-gold-500/30 transition-transform hover:-translate-y-0.5"
                 >
-                  <div className="relative aspect-[3/4]">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                      sizes="320px"
-                      priority={i < 2}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-                      <p className="font-game text-[10px] uppercase tracking-[0.2em] text-gold-400">
-                        {item.location}
-                      </p>
-                      <p className="font-display text-sm font-semibold text-white">{item.title}</p>
-                    </div>
-                  </div>
-                </motion.button>
-              );
-            })}
-          </motion.div>
+                  Explore Work
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <a
+                  href={getPhoneUrl(SITE.contact.phone)}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 font-game text-sm font-semibold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-gold-500/50 hover:bg-white/10"
+                >
+                  <Phone className="h-4 w-4 text-gold-400" />
+                  Call Now
+                </a>
+              </div>
+            </motion.div>
+          </div>
 
-          {/* Active project counter */}
-          <div className="absolute bottom-8 right-8 hidden lg:block">
-            <span className="font-game text-6xl font-bold text-white/10">
-              {String(active + 1).padStart(2, "0")}
-            </span>
-            <span className="font-game text-lg text-white/20"> / 04</span>
+          {/* Right — interactive image stack */}
+          <div className="relative min-h-[360px] flex-1 lg:min-h-0">
+            <motion.div style={{ x: parallaxX, y: parallaxY }} className="absolute inset-0 p-6 lg:p-10">
+              {HERO_SHOWCASE.map((item, i) => {
+                const isActive = active === i;
+                return (
+                  <motion.button
+                    key={item.title}
+                    type="button"
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={{
+                      opacity: 1,
+                      scale: isActive ? 1.05 : 0.92,
+                      rotate: isActive ? 0 : item.rotate,
+                      zIndex: isActive ? 20 : item.z,
+                    }}
+                    transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                    className="absolute w-[52%] max-w-[280px] cursor-pointer overflow-hidden rounded-2xl border border-white/15 shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 md:w-[46%] lg:max-w-[320px]"
+                    style={{ left: item.x, top: item.y }}
+                  >
+                    <div className="relative aspect-[3/4]">
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes="320px"
+                        priority={i < 2}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+                        <p className="font-game text-[10px] uppercase tracking-[0.2em] text-gold-400">
+                          {item.location}
+                        </p>
+                        <p className="font-display text-sm font-semibold text-white">{item.title}</p>
+                      </div>
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </motion.div>
           </div>
         </div>
-      </div>
 
-      {/* Scroll line */}
-      <motion.div
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-0 left-1/2 h-20 w-px origin-top -translate-x-1/2 bg-gradient-to-b from-gold-500/60 to-transparent"
-      />
+        {/* Why AVR — credibility strip (visible in first viewport) */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.6 }}
+          className="relative z-10 mx-6 mb-8 grid grid-cols-2 gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md md:mx-10 md:grid-cols-4 md:gap-4 md:p-5"
+        >
+          {CREDIBILITY.map((item) => (
+            <div
+              key={item.label}
+              className="flex items-center gap-3 rounded-xl border border-white/5 bg-black/20 px-3 py-3 md:px-4"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-500/15">
+                <item.icon className="h-5 w-5 text-gold-400" />
+              </div>
+              <div>
+                <p className="font-game text-lg font-bold text-white md:text-xl">{item.value}</p>
+                <p className="font-game-alt text-[10px] uppercase tracking-wider text-white/45 md:text-xs">
+                  {item.label}
+                </p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -88,7 +88,9 @@ export function InteractiveServices() {
                   transition={{ duration: 0.4 }}
                 >
                   <p className="font-game-alt text-xs uppercase tracking-[0.3em] text-gold-400">
-                    {current.projects.length}+ Projects Delivered
+                    {current.projects.length > 0
+                      ? `${current.projects.length}+ Projects Delivered`
+                      : `${current.gallery.length} Photos in Gallery`}
                   </p>
                   <h3 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">
                     {current.title}
@@ -100,7 +102,7 @@ export function InteractiveServices() {
                     href={`/services/${current.slug}`}
                     className="mt-8 inline-flex items-center gap-2 font-game text-xs font-semibold uppercase tracking-[0.2em] text-gold-400 transition-colors hover:text-gold-400/80"
                   >
-                    View Projects
+                    {current.projects.length > 0 ? "View Projects" : "View Gallery"}
                     <ArrowUpRight className="h-4 w-4" />
                   </Link>
                 </motion.div>

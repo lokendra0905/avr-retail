@@ -4,7 +4,7 @@ import { CursorGlow } from "@/components/home/CursorGlow";
 import { ImmersiveHero } from "@/components/home/ImmersiveHero";
 import { MarqueeStrip } from "@/components/home/MarqueeStrip";
 import { InteractiveServices } from "@/components/home/InteractiveServices";
-import { ScrollGallery } from "@/components/home/ScrollGallery";
+import { ProjectCarousel } from "@/components/home/ProjectCarousel";
 import { SpotlightGrid } from "@/components/home/SpotlightGrid";
 import { DesignProcess } from "@/components/home/DesignProcess";
 import { StatsArena } from "@/components/home/StatsArena";
@@ -19,7 +19,7 @@ export function HomeExperience() {
       <ImmersiveHero />
       <MarqueeStrip />
       <InteractiveServices />
-      <ScrollGallery />
+      <ProjectCarousel />
       <SpotlightGrid />
       <DesignProcess />
       <StatsArena />

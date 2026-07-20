@@ -1,4 +1,5 @@
 import { OPTICAL_PROJECTS } from "@/constants/optical-projects.generated";
+import { getCategoryGallery } from "@/constants/category-galleries.generated";
 import { OLD_SITE_IMAGES } from "@/constants/old-site-images";
 
 export type ProjectMedia = {
@@ -24,7 +25,10 @@ export type ServiceCategory = {
   title: string;
   description: string;
   coverImage: string;
+  /** Named store projects (e.g. optical). Empty when only a photo gallery exists. */
   projects: Project[];
+  /** Flat photo gallery shown on the service page when there are no named projects. */
+  gallery: ProjectMedia[];
   seo: { title: string; description: string; keywords: string[] };
 };
 
@@ -65,39 +69,42 @@ function opticalFromGenerated(p: (typeof OPTICAL_PROJECTS)[number]): Project {
   };
 }
 
-const GARMENT_IMAGES = [
-  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.46 PM.jpeg",
-  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.47 PM.jpeg",
-  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.48 PM.jpeg",
-  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.49 PM.jpeg",
-  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.50 PM.jpeg",
-  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.51 PM.jpeg",
-];
+function galleryFromCategory(slug: string, title: string): ProjectMedia[] {
+  const cat = getCategoryGallery(slug);
+  if (!cat) return [];
+  return cat.galleryImages.map((src, i) => ({
+    type: "image" as const,
+    src,
+    alt: `${title} — photo ${i + 1}`,
+    caption: `${title} — photo ${i + 1}`,
+  }));
+}
 
-function simpleProject(
-  slug: string,
-  title: string,
-  categoryTitle: string,
-  location: string,
-  coverImage: string,
-  images: string[] = [coverImage]
-): Project {
+function coverFromCategory(slug: string, fallback: string): string {
+  return getCategoryGallery(slug)?.coverImage ?? fallback;
+}
+
+function categoryService(opts: {
+  slug: string;
+  title: string;
+  description: string;
+  seoTitle: string;
+  seoDescription: string;
+  keywords: string[];
+  fallbackCover: string;
+}): ServiceCategory {
+  const gallery = galleryFromCategory(opts.slug, opts.title);
   return {
-    slug,
-    title,
-    location,
-    coverImage,
-    excerpt: `${categoryTitle} retail fit-out by AVR Retail in ${location}.`,
-    description: `AVR Retail designed and executed this ${categoryTitle.toLowerCase()} for ${title}, combining creative showroom design with practical retail space planning and turnkey execution.`,
-    gallery: images.map((src, i) => ({
-      type: "image" as const,
-      src,
-      alt: `${title} — ${categoryTitle} photo ${i + 1}`,
-    })),
+    slug: opts.slug,
+    title: opts.title,
+    description: opts.description,
+    coverImage: coverFromCategory(opts.slug, opts.fallbackCover),
+    projects: [],
+    gallery,
     seo: {
-      title: `${title} — ${categoryTitle} by AVR Retail`,
-      description: `${title} ${categoryTitle.toLowerCase()} project by AVR Retail, India.`,
-      keywords: ["showroom design services", "shop interior design India"],
+      title: opts.seoTitle,
+      description: opts.seoDescription,
+      keywords: opts.keywords,
     },
   };
 }
@@ -110,6 +117,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "Highly specialised in optical showroom design — from layout planning to custom optical store display solutions. AVR is among the best optical shop 3D designers in India, delivering end-to-end optical shop interior design nationwide.",
     coverImage: OPTICAL_PROJECTS[0]?.coverImage ?? OLD_SITE_IMAGES.categories.optical,
     projects: OPTICAL_PROJECTS.map(opticalFromGenerated),
+    gallery: [],
     seo: {
       title: "Optical Showroom Design & Optical Store Interior Design India",
       description:
@@ -124,93 +132,85 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       ],
     },
   },
-  {
+  categoryService({
     slug: "jewellery-showroom-design",
     title: "Jewellery Showroom Design",
     description:
       "Luxury jewellery showroom design with strategic lighting, premium display cases, and retail space planning that elevates your brand presence.",
-    coverImage: OLD_SITE_IMAGES.categories.jewellery,
-    projects: [
-      simpleProject("premium-jewels", "Premium Jewels", "Jewellery Showroom Design", "Delhi", OLD_SITE_IMAGES.categories.jewellery),
-    ],
-    seo: {
-      title: "Jewellery Showroom Design Services India",
-      description: "Custom jewellery showroom design by AVR Retail — a trusted retail fit out company in India.",
-      keywords: ["showroom design services", "shop interior design India"],
-    },
-  },
-  {
+    seoTitle: "Jewellery Showroom Design Services India",
+    seoDescription:
+      "Custom jewellery showroom design by AVR Retail — a trusted retail fit out company in India.",
+    keywords: ["jewellery showroom design", "showroom design services", "shop interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.categories.jewellery,
+  }),
+  categoryService({
     slug: "shoe-showroom-design",
     title: "Shoe Showroom Design",
     description:
       "Dynamic footwear showroom design with engaging displays, efficient circulation, and brand-forward commercial interiors.",
-    coverImage: OLD_SITE_IMAGES.categories.shoe,
-    projects: [
-      simpleProject("stride-footwear", "Stride Footwear", "Shoe Showroom Design", "Mumbai", OLD_SITE_IMAGES.categories.shoe),
-    ],
-    seo: {
-      title: "Shoe Showroom Design & Shop Interior Design India",
-      description: "Professional shoe showroom design and retail space planning by AVR Retail.",
-      keywords: ["showroom design services", "shop interior design India"],
-    },
-  },
-  {
+    seoTitle: "Shoe Showroom Design & Shop Interior Design India",
+    seoDescription: "Professional shoe showroom design and retail space planning by AVR Retail.",
+    keywords: ["shoe showroom design", "showroom design services", "shop interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.categories.shoe,
+  }),
+  categoryService({
     slug: "mobile-showroom-design",
     title: "Mobile Showroom Design",
     description:
       "Tech-forward mobile showroom design with interactive zones, secure fixtures, and modern commercial interior design.",
-    coverImage: OLD_SITE_IMAGES.categories.mobile,
-    projects: [
-      simpleProject("smart-mobile-hub", "Smart Mobile Hub", "Mobile Showroom Design", "Bangalore", OLD_SITE_IMAGES.categories.mobile),
-    ],
-    seo: {
-      title: "Mobile Showroom Design Services India",
-      description: "Mobile showroom design and retail fit out solutions by AVR Retail across India.",
-      keywords: ["showroom design services", "commercial interior design India"],
-    },
-  },
-  {
+    seoTitle: "Mobile Showroom Design Services India",
+    seoDescription: "Mobile showroom design and retail fit out solutions by AVR Retail across India.",
+    keywords: ["mobile showroom design", "showroom design services", "commercial interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.categories.mobile,
+  }),
+  categoryService({
     slug: "garments-showroom-design",
     title: "Garments Showroom Design",
     description:
       "Fashion-forward garments showroom design with flexible fixtures, fitting zones, and visual merchandising.",
-    coverImage: GARMENT_IMAGES[0],
-    projects: [
-      simpleProject("style-avenue", "Style Avenue", "Garments Showroom Design", "Jaipur", GARMENT_IMAGES[0], GARMENT_IMAGES),
-    ],
-    seo: {
-      title: "Garments Showroom Design & Shop Renovation Services",
-      description: "Garments showroom design by AVR Retail — leading retail solutions provider in India.",
-      keywords: ["shop renovation services", "shop interior design India"],
-    },
-  },
-  {
+    seoTitle: "Garments Showroom Design & Shop Renovation Services",
+    seoDescription: "Garments showroom design by AVR Retail — leading retail solutions provider in India.",
+    keywords: ["garments showroom design", "shop renovation services", "shop interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.services.port1,
+  }),
+  categoryService({
     slug: "supermarket-design",
     title: "Supermarket Design",
     description:
       "Efficient supermarket design with optimised aisles, category zoning, and durable fixtures for high-traffic retail.",
-    coverImage: OLD_SITE_IMAGES.services.porte2,
-    projects: [
-      simpleProject("fresh-mart", "Fresh Mart", "Supermarket Design", "Pune", OLD_SITE_IMAGES.services.porte2),
-    ],
-    seo: {
-      title: "Supermarket Design & Retail Space Planning India",
-      description: "Supermarket design and retail space planning by AVR Retail.",
-      keywords: ["retail space planning", "commercial interior design India"],
-    },
-  },
-  {
+    seoTitle: "Supermarket Design & Retail Space Planning India",
+    seoDescription: "Supermarket design and retail space planning by AVR Retail.",
+    keywords: ["supermarket design", "retail space planning", "commercial interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.services.porte2,
+  }),
+  categoryService({
     slug: "gift-showroom-design",
-    title: "Gift Showroom Design",
-    description: "Creative gift showroom design with versatile display systems that showcase products beautifully.",
-    coverImage: OLD_SITE_IMAGES.services.porte1,
-    projects: [
-      simpleProject("gift-gallery", "Gift Gallery", "Gift Showroom Design", "Chandigarh", OLD_SITE_IMAGES.services.porte1),
-    ],
-    seo: {
-      title: "Gift Showroom Design Services India",
-      description: "Gift showroom design and shop interior design India by AVR Retail.",
-      keywords: ["showroom design services", "shop interior design India"],
-    },
-  },
+    title: "Gift & Toy Showroom Design",
+    description:
+      "Creative gift and toy showroom design with versatile display systems that showcase products beautifully.",
+    seoTitle: "Gift & Toy Showroom Design Services India",
+    seoDescription: "Gift and toy showroom design and shop interior design India by AVR Retail.",
+    keywords: ["gift showroom design", "toy showroom design", "shop interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.services.porte1,
+  }),
+  categoryService({
+    slug: "medical-store-design",
+    title: "Medical Store Design",
+    description:
+      "Functional medical and pharmacy store design with organised shelving, clear circulation, and brand-ready interiors.",
+    seoTitle: "Medical Store Design & Pharmacy Interior Design India",
+    seoDescription: "Medical store and pharmacy interior design by AVR Retail across India.",
+    keywords: ["medical store design", "pharmacy interior design", "shop interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.services.retailInterior,
+  }),
+  categoryService({
+    slug: "watch-showroom-design",
+    title: "Watch Showroom Design",
+    description:
+      "Premium watch showroom design with refined lighting, secure displays, and luxury retail detailing.",
+    seoTitle: "Watch Showroom Design Services India",
+    seoDescription: "Watch showroom design and luxury retail fit-out by AVR Retail.",
+    keywords: ["watch showroom design", "showroom design services", "shop interior design India"],
+    fallbackCover: OLD_SITE_IMAGES.services.port1,
+  }),
 ];

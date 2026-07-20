@@ -36,17 +36,59 @@ export function getAllProjectPaths(): { serviceSlug: string; projectSlug: string
   );
 }
 
+/** Virtual project from a category photo gallery (no named stores). */
+export function galleryAsProject(service: ServiceCategory): Project {
+  return {
+    slug: "gallery",
+    title: service.title,
+    coverImage: service.coverImage,
+    excerpt: `${service.gallery.length}+ photos from our ${service.title.toLowerCase()} work across India.`,
+    description: service.description,
+    gallery: service.gallery,
+    seo: service.seo,
+  };
+}
+
+export function getFeaturedHref(serviceSlug: string, projectSlug: string): string {
+  if (projectSlug === "gallery") return `/services/${serviceSlug}`;
+  return `/services/${serviceSlug}/${projectSlug}`;
+}
+
+/**
+ * Round-robin across categories.
+ * Named projects first; gallery-only categories contribute one virtual entry each.
+ */
 export function getFeaturedProjects(limit = 6): {
   service: ServiceCategory;
   project: Project;
 }[] {
+  const queues = SERVICE_CATEGORIES.map((service) => {
+    if (service.projects.length > 0) {
+      return { service, projects: [...service.projects] };
+    }
+    if (service.gallery.length > 0) {
+      return { service, projects: [galleryAsProject(service)] };
+    }
+    return { service, projects: [] as Project[] };
+  }).filter((q) => q.projects.length > 0);
+
   const featured: { service: ServiceCategory; project: Project }[] = [];
-  for (const service of SERVICE_CATEGORIES) {
-    for (const project of service.projects) {
-      featured.push({ service, project });
-      if (featured.length >= limit) return featured;
+  let cursor = 0;
+
+  while (featured.length < limit && queues.length > 0) {
+    const idx = cursor % queues.length;
+    const queue = queues[idx];
+    const project = queue.projects.shift();
+    if (project) {
+      featured.push({ service: queue.service, project });
+    }
+    if (queue.projects.length === 0) {
+      queues.splice(idx, 1);
+    } else {
+      cursor = idx + 1;
     }
   }
+
   return featured;
 }
 

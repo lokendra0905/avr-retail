@@ -22,7 +22,7 @@ export function PageSection({
   containerClassName,
 }: PageSectionProps) {
   return (
-    <section id={id} className={cn("py-20 lg:py-28", variants[variant], className)}>
+    <section id={id} className={cn("py-10 lg:py-10", variants[variant], className)}>
       <div className={cn("mx-auto max-w-[1400px] px-6", containerClassName)}>
         {children}
       </div>

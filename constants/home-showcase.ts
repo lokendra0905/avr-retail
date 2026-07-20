@@ -39,13 +39,13 @@ export const HERO_SHOWCASE = [
 
 export const SPOTLIGHT_IMAGES = [
   "/assets/projects/house-of-okkio-noida/house-of-okkio-noida-07.jpeg",
+  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.48 PM.jpeg",
   "/assets/projects/avon-optical-kanpur/avon-optical-kanpur-15.jpeg",
-  "/assets/projects/eye-class-optical-boutique-hyderabad/eye-class-optical-boutique-hyderabad-03.jpeg",
+  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.52 PM.jpeg",
   "/assets/projects/optical-world-bangalore/optical-world-bangalore-04.jpeg",
-  "/assets/projects/nethra-opticals-visakhapatnam/nethra-opticals-visakhapatnam-02.jpeg",
+  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.55 PM.jpeg",
   "/assets/projects/the-optika-gurgaon/the-optika-gurgaon-03.jpeg",
-  "/assets/projects/optisch-bangalore/optisch-bangalore-02.jpeg",
-  "/assets/projects/nagpal-opticians-rudarpur/nagpal-opticians-rudarpur-03.jpeg",
+  "/assets/garments/WhatsApp Image 2026-06-29 at 10.48.57 PM.jpeg",
 ] as const;
 
 export const MARQUEE_WORDS = [
