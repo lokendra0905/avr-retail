@@ -8,8 +8,8 @@ export const PAGE_BANNERS = {
     alt: "AVR Retail services",
   },
   portfolio: {
-    image: "/assets/projects/avon-optical-kanpur/avon-optical-kanpur-01.png",
-    alt: "AVR Retail portfolio — optical showroom projects",
+    image: "/assets/projects/optorium-hyderabad/optorium-hyderabad-01.png",
+    alt: "AVR Retail portfolio — retail interior projects",
   },
   blog: {
     image: "https://www.avrretail.com/AvrRetailImages/BlogImage/optical-store-interior-design-guide.jpg",

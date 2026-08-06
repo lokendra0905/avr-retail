@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
           <p className="font-game text-xs uppercase tracking-[0.25em] text-gold-500">Explore Our Services</p>
           <p className="mt-2 text-ink-muted">
             Looking for{" "}
-            <Link href="/services/optical-store-design" className="font-semibold text-gold-500 hover:underline">
+            <Link href="/services/eyewear-optical-retail" className="font-semibold text-gold-500 hover:underline">
               optical store design
             </Link>
             ,{" "}

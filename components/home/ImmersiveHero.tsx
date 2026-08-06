@@ -92,11 +92,35 @@ export function ImmersiveHero() {
                   Call Now
                 </a>
               </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35, duration: 0.6 }}
+                className="mt-10 grid grid-cols-2 gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md md:gap-4 md:p-5 lg:max-w-xl"
+              >
+                {CREDIBILITY.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-3 rounded-xl border border-white/5 bg-black/20 px-3 py-3 md:px-4"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-500/15">
+                      <item.icon className="h-5 w-5 text-gold-400" />
+                    </div>
+                    <div>
+                      <p className="font-game text-lg font-bold text-white md:text-xl">{item.value}</p>
+                      <p className="font-game-alt text-[10px] uppercase tracking-wider text-white/45 md:text-xs">
+                        {item.label}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
             </motion.div>
           </div>
 
           {/* Right — interactive image stack */}
-          <div className="relative min-h-[360px] flex-1 lg:min-h-0">
+          <div className="relative z-10 min-h-[380px] flex-1 lg:min-h-0 lg:pb-10">
             <motion.div style={{ x: parallaxX, y: parallaxY }} className="absolute inset-0 p-6 lg:p-10">
               {HERO_SHOWCASE.map((item, i) => {
                 const isActive = active === i;
@@ -140,31 +164,6 @@ export function ImmersiveHero() {
             </motion.div>
           </div>
         </div>
-
-        {/* Why AVR — credibility strip (visible in first viewport) */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.6 }}
-          className="relative z-10 mx-6 mb-8 grid grid-cols-2 gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md md:mx-10 md:grid-cols-4 md:gap-4 md:p-5"
-        >
-          {CREDIBILITY.map((item) => (
-            <div
-              key={item.label}
-              className="flex items-center gap-3 rounded-xl border border-white/5 bg-black/20 px-3 py-3 md:px-4"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-500/15">
-                <item.icon className="h-5 w-5 text-gold-400" />
-              </div>
-              <div>
-                <p className="font-game text-lg font-bold text-white md:text-xl">{item.value}</p>
-                <p className="font-game-alt text-[10px] uppercase tracking-wider text-white/45 md:text-xs">
-                  {item.label}
-                </p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
