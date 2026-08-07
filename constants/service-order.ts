@@ -22,14 +22,14 @@ export const SERVICE_SLUG_ORDER = [
 ] as const;
 
 export function sortByServiceSlug<T extends { slug: string }>(items: T[]): T[] {
-  const rank = new Map(SERVICE_SLUG_ORDER.map((slug, i) => [slug, i]));
+  const rank = new Map<string, number>(SERVICE_SLUG_ORDER.map((slug, i) => [slug, i]));
   return [...items].sort(
     (a, b) => (rank.get(a.slug) ?? Number.MAX_SAFE_INTEGER) - (rank.get(b.slug) ?? Number.MAX_SAFE_INTEGER)
   );
 }
 
 export function sortServiceFolderNames(folders: string[]): string[] {
-  const rank = new Map(SERVICE_FOLDER_ORDER.map((name, i) => [name, i]));
+  const rank = new Map<string, number>(SERVICE_FOLDER_ORDER.map((name, i) => [name, i]));
   return [...folders].sort(
     (a, b) => (rank.get(a) ?? Number.MAX_SAFE_INTEGER) - (rank.get(b) ?? Number.MAX_SAFE_INTEGER)
   );

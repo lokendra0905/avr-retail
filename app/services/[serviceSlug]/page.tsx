@@ -8,7 +8,6 @@ import { getAllServiceSlugs, getServiceBySlug } from "@/lib/services";
 import { PageBanner } from "@/components/shared/PageBanner";
 import { PageIntro } from "@/components/shared/PageIntro";
 import { PageSection } from "@/components/shared/PageSection";
-import { AnimatedSection, SectionHeading } from "@/components/shared/AnimatedSection";
 import { ProjectCard } from "@/components/services/ProjectCard";
 import { ProjectGallery } from "@/components/services/ProjectGallery";
 import { CTABlock } from "@/components/shared/CTABlock";
