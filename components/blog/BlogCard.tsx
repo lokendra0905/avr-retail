@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
-import type { BlogPost } from "@/constants/blog";
+import { getBlogPostPath, type BlogPost } from "@/constants/blog";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 
 export function BlogCard({ post }: { post: BlogPost }) {
@@ -12,7 +12,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
     <AnimatedSection>
       <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 280 }}>
         <Link
-          href={`/blog/${post.slug}`}
+          href={getBlogPostPath(post.slug)}
           className="group block overflow-hidden rounded-2xl border border-navy-700/80 bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/10"
         >
           <div className="relative aspect-[16/9] overflow-hidden">

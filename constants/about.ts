@@ -77,7 +77,7 @@ export const ABOUT = {
       image: OLD_SITE_IMAGES.team.satish,
     },
     {
-      name: "Yogender",
+      name: "Pardeep jangir",
       role: "Advisory Board Member",
       bio: "Embedded developer providing practical solutions for display management, lighting, and electrical circuits.",
       image: OLD_SITE_IMAGES.team.yogender,

@@ -15,6 +15,35 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = generated as BlogPost[];
 
+/** Legacy path segment from the original avrretail.com blog URLs. */
+export const BLOG_CATEGORY_SLUG = "optical-retail-store";
+
+/** Posts published at /blog/{slug} (not under optical-retail-store). */
+const BLOG_ROOT_PATH_SLUGS = new Set([
+  "optical-showroom-design-ideas",
+  "retail-fit-out-company-in-india",
+  "turnkey-retail-fit-out-services-india",
+  "jewellery-showroom-interior-design",
+  "top-commercial-interior-design-in-india",
+  "jewellery-shop-interior-design",
+  "complete-guide-to-retail-fit-out-in-india",
+  "turnkey-retail-interior-design-cost-india",
+  "best-retail-fit-out-company-in-india",
+]);
+
+export function getBlogPostPath(slug: string): string {
+  if (BLOG_ROOT_PATH_SLUGS.has(slug)) return `/blog/${slug}`;
+  return `/blog/${BLOG_CATEGORY_SLUG}/${slug}`;
+}
+
+export function getBlogSlugsForRootRoute(): string[] {
+  return BLOG_POSTS.filter((p) => BLOG_ROOT_PATH_SLUGS.has(p.slug)).map((p) => p.slug);
+}
+
+export function getBlogSlugsForCategoryRoute(): string[] {
+  return BLOG_POSTS.filter((p) => !BLOG_ROOT_PATH_SLUGS.has(p.slug)).map((p) => p.slug);
+}
+
 export const BLOG = {
   seo: {
     title: "Blog | Retail Design Insights | AVR Retail",

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:hostinger": "node scripts/build-hostinger.mjs",
     "start": "next start",
     "lint": "next lint",
     "prepare-assets": "node scripts/prepare-service-assets.mjs"

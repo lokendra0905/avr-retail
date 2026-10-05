@@ -39,11 +39,16 @@ const rajdhani = Rajdhani({
   display: "swap",
 });
 
-export const metadata: Metadata = buildMetadata({
-  title: SITE.tagline,
-  description: SITE.description,
-  path: "/",
-});
+export const metadata: Metadata = {
+  ...buildMetadata({
+    title: SITE.tagline,
+    description: SITE.description,
+    path: "/",
+  }),
+  verification: {
+    google: "4Vl8kZkPLsd0fwsW7BVwq2r8Qw7STsvtkzgzE0-SF2s",
+  },
+};
 
 export default function RootLayout({
   children,

@@ -1,0 +1,43 @@
+# Apache config for BigRock / cPanel (upload as public_html/.htaccess)
+
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Force www (match your domain preference — change if you use non-www)
+RewriteCond %{HTTP_HOST} ^avrretail\.com$ [NC]
+RewriteRule ^ https://www.avrretail.com%{REQUEST_URI} [L,R=301]
+
+# Legacy service URL redirects (old site paths → new site)
+RedirectMatch 301 ^/services/optical-store-design/?(.*)$ /services/eyewear-optical-retail/$1
+RedirectMatch 301 ^/services/garments-showroom-design/?(.*)$ /services/fashion-apparel/$1
+RedirectMatch 301 ^/services/jewellery-showroom-design/?(.*)$ /services/luxury-jewellery/$1
+RedirectMatch 301 ^/services/shoe-showroom-design/?(.*)$ /services/footwear-stores/$1
+RedirectMatch 301 ^/services/mobile-showroom-design/?(.*)$ /services/mobile-electronics/$1
+RedirectMatch 301 ^/services/watch-showroom-design/?(.*)$ /services/watch-lifestyle/$1
+RedirectMatch 301 ^/services/gift-showroom-design/?(.*)$ /services/gift-toy-stores/$1
+RedirectMatch 301 ^/services/medical-store-design/?(.*)$ /services/beauty-cosmetics/$1
+
+# Legacy blog URL (wrong category prefix) → ranked URL
+RedirectMatch 301 ^/blog/optical-retail-store/optical-showroom-design-ideas/?$ /blog/optical-showroom-design-ideas/
+RedirectMatch 301 ^/blog/complete-guide-retail-fit-out-india/?$ /blog/complete-guide-to-retail-fit-out-in-india/
+RedirectMatch 301 ^/blog/how-to-choose-best-retail-fit-out-company-india/?$ /blog/best-retail-fit-out-company-in-india/
+
+# Missing pages: keep a real 404. Do not 302 unknown URLs to the homepage —
+# Google treats that as a soft 404 and it blocks indexing of blog posts.
+ErrorDocument 404 /404.html
+
+# Cache static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+

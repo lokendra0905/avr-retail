@@ -18,7 +18,7 @@ export const HOME = {
     ctaPrimary: { label: "Call Us Now", type: "phone" as const },
     ctaSecondary: { label: "View Our Work", href: "/portfolio" },
     backgroundVideo: "/assets/video/hero.mp4",
-    backgroundPoster: OLD_SITE_IMAGES.hero.banner1,
+    backgroundPoster: "/assets/projects/optical-world-bangalore/optical-world-bangalore-01.jpeg",
   },
   intro: {
     title: "India's Trusted Retail Fit Out Company",

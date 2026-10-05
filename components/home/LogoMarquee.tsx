@@ -6,6 +6,7 @@ import { AnimatedSection, SectionHeading } from "@/components/shared/AnimatedSec
 
 export function LogoMarquee() {
   const logos = [...HOME.clientLogos, ...HOME.clientLogos];
+  if (HOME.clientLogos.length === 0) return null;
 
   return (
     <section className="overflow-hidden border-y border-navy-700 py-20">
@@ -25,15 +26,20 @@ export function LogoMarquee() {
           {logos.map((logo, i) => (
             <div
               key={`${logo.name}-${i}`}
-              className="flex h-20 w-44 shrink-0 items-center justify-center rounded-2xl border border-navy-700/60 bg-white px-5 py-3 shadow-sm transition-shadow hover:shadow-md"
+              className="flex h-28 w-48 shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-navy-700 bg-[#f7f3ef] px-4 py-3 shadow-sm transition-shadow hover:shadow-md"
             >
-              <Image
-                src={logo.src}
-                alt={`${logo.name} — AVR Retail client`}
-                width={140}
-                height={60}
-                className="max-h-12 w-auto object-contain opacity-80 transition-opacity hover:opacity-100"
-              />
+              <div className="relative flex h-12 w-full items-center justify-center">
+                <Image
+                  src={logo.src}
+                  alt={`${logo.name} — AVR Retail client`}
+                  width={140}
+                  height={48}
+                  className="max-h-12 w-auto object-contain opacity-90 transition-opacity hover:opacity-100"
+                />
+              </div>
+              <span className="text-center font-accent text-xs font-semibold uppercase tracking-wide text-ink">
+                {logo.name}
+              </span>
             </div>
           ))}
         </div>

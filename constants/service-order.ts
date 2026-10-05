@@ -1,10 +1,10 @@
 /** Canonical display order for all service categories (matches folder names in public/assets/services/). */
 export const SERVICE_FOLDER_ORDER = [
   "Eyewear & Optical Retail",
+  "Fashion & Apparel",
   "Luxury Jewellery",
   "Footwear Stores",
   "Mobile & Electronics",
-  "Fashion & Apparel",
   "Gift & Toy Stores",
   "Beauty & Cosmetics",
   "Watch & Lifestyle",
@@ -12,10 +12,10 @@ export const SERVICE_FOLDER_ORDER = [
 
 export const SERVICE_SLUG_ORDER = [
   "eyewear-optical-retail",
+  "fashion-apparel",
   "luxury-jewellery",
   "footwear-stores",
   "mobile-electronics",
-  "fashion-apparel",
   "gift-toy-stores",
   "beauty-cosmetics",
   "watch-lifestyle",
